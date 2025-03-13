@@ -1,0 +1,8 @@
+<navbar>
+  <span>TAILOER</span>
+  {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}">
+    <span>Logout</span>
+  </a>
+  {% endif %}
+</navbar>

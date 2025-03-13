@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Product
 from .forms import ProductForm
 
@@ -14,7 +15,7 @@ def product(request, pk):
     context = {'product': product}
     return render(request, 'marketplace/product.html', context)
 
-
+@login_required(login_url="login")
 def createProduct(request):
 
     form = ProductForm()
@@ -28,7 +29,7 @@ def createProduct(request):
     context = {'form': form}
     return render(request, 'marketplace/product_form.html', context)
 
-
+@login_required(login_url="login")
 def editProduct(request, pk):
 
     product = Product.objects.get(id=pk)
@@ -43,7 +44,7 @@ def editProduct(request, pk):
     context = {'form': form, 'product': product}
     return render(request, 'marketplace/product_form.html', context)
 
-
+@login_required(login_url="login")
 def deleteProduct(request, pk):
 
     product = Product.objects.get(id=pk)
